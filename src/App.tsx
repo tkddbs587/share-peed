@@ -8,6 +8,8 @@ import Message from './routes/Message';
 import Home from './routes/Home';
 import SignIn from './routes/SignIn';
 import SignUp from './routes/SignUp';
+import Navigation from './components/Navigation';
+import './reset.css';
 
 const router = createBrowserRouter([
   {
@@ -43,7 +45,12 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <Navigation />
+    </>
+  );
 }
 
 export default App;
