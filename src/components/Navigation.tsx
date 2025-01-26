@@ -1,13 +1,12 @@
+import { NAV_OPTIONS } from '../constants/navOptions';
+import NavOption from './NavOption';
+
 const Navigation = () => {
   return (
-    <div className="flex bg-sky-300">
-      <img src="icons/home.svg" alt="홈" />
-      <div className="text-24-700">홈</div>
-      <img src="icons/message.svg" alt="메시지" />
-      <div>메시지</div>
-
-      <img src="icons/setting.svg" alt="설정" />
-      <div>설정</div>
+    <div className="px-50 flex justify-between">
+      {NAV_OPTIONS.map((option) => (
+        <NavOption {...option} key={option.id} />
+      ))}
     </div>
   );
 };

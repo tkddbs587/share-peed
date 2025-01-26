@@ -1,8 +1,17 @@
+import colors from './src/styles/colors';
+
 /** @type {import('tailwindcss').Config} */
+
+const pxToRem = require('tailwindcss-preset-px-to-rem');
+
 export default {
+  presets: [pxToRem],
   content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      colors: {
+        ...colors,
+      },
       fontSize: {
         '32-700': ['32px', { lineHeight: '48px', fontWeight: '700' }],
         '24-700': ['24px', { lineHeight: '32px', fontWeight: '700' }],
