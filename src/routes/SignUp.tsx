@@ -15,11 +15,14 @@ type SignUpForm = {
 
 const SignUp = () => {
   const {
+    reset,
     register,
     handleSubmit,
     watch,
     formState: { errors, isLoading },
-  } = useForm<SignUpForm>();
+  } = useForm<SignUpForm>({
+    mode: 'onChange',
+  });
 
   const onSubmit = async (data: SignUpForm) => {
     const { email, password, nickname } = data;
@@ -30,12 +33,14 @@ const SignUp = () => {
         email,
         password,
       );
-      console.log(credentials);
       await updateProfile(credentials.user, {
         displayName: nickname,
       });
     } catch (error) {
       console.error(error);
+    } finally {
+      alert('회원가입 완료');
+      reset();
     }
   };
 
@@ -105,8 +110,6 @@ const SignUp = () => {
             register={register('passwordCheck', {
               required: true,
               minLength: 8,
-              validate: (value) =>
-                value === watch('password') || '비밀번호가 일치하지 않습니다.',
             })}
             placeholder="비밀번호를 입력해주세요."
           />
