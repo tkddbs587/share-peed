@@ -3,7 +3,7 @@ import NavOption from './NavOption';
 
 const Navigation = () => {
   return (
-    <div className="px-50 flex justify-between">
+    <div className="flex justify-between px-50">
       {NAV_OPTIONS.map((option) => (
         <NavOption {...option} key={option.id} />
       ))}

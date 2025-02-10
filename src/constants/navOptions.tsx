@@ -1,6 +1,6 @@
-import Home from '../../public/icons/home.svg?react';
-import Message from '../../public/icons/message.svg?react';
-import Setting from '../../public/icons/setting.svg?react';
+import Home from '@/assets/icons/home.svg?react';
+import Message from '@/assets/icons/message.svg?react';
+import Setting from '@/assets/icons/setting.svg?react';
 
 export type NavOptionType = {
   id: string;

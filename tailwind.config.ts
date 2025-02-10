@@ -9,6 +9,9 @@ export default {
   content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Pretendard', 'sans-serif'],
+      },
       colors: {
         ...colors,
       },
@@ -20,6 +23,7 @@ export default {
 
         '14-700': ['14px', { lineHeight: '20px', fontWeight: '700' }],
         '14-400': ['14px', { lineHeight: '20px', fontWeight: '400' }],
+        '14-500': ['14px', { lineHeight: '20px', fontWeight: '500' }],
         '12-400': ['12px', { lineHeight: '16px', fontWeight: '400' }],
       },
     },
