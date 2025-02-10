@@ -9,6 +9,8 @@ import Home from './routes/Home';
 import SignIn from './routes/SignIn';
 import SignUp from './routes/SignUp';
 import Navigation from './components/Navigation';
+import { useEffect, useState } from 'react';
+import { auth } from './firebase';
 
 const router = createBrowserRouter([
   {
@@ -44,11 +46,18 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return (
-    <>
-      <RouterProvider router={router} />
-    </>
-  );
+  const [isLoding, setIsLoding] = useState(true);
+
+  const init = async () => {
+    await auth.authStateReady();
+    setIsLoding(false);
+  };
+
+  useEffect(() => {
+    init();
+  }, []);
+
+  return <>{isLoding ? 'Loding...' : <RouterProvider router={router} />}</>;
 }
 
 export default App;
