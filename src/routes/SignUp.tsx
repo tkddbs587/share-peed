@@ -4,7 +4,10 @@ import { auth } from '../firebase';
 
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { FirebaseError } from 'firebase/app';
+import { useState } from 'react';
+import { errorMessages } from '@/constants/errorMessage';
 
 type SignUpForm = {
   nickname: string;
@@ -14,6 +17,9 @@ type SignUpForm = {
 };
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const [error, setError] = useState('');
+
   const {
     reset,
     register,
@@ -27,6 +33,7 @@ const SignUp = () => {
   const onSubmit = async (data: SignUpForm) => {
     const { email, password, nickname } = data;
     try {
+      setError('');
       if (isLoading) return;
       const credentials = await createUserWithEmailAndPassword(
         auth,
@@ -36,10 +43,15 @@ const SignUp = () => {
       await updateProfile(credentials.user, {
         displayName: nickname,
       });
-    } catch (error) {
-      console.error(error);
+      navigate('/');
+    } catch (e) {
+      if (e instanceof FirebaseError) {
+        if (e.code in errorMessages) {
+          setError(errorMessages[e.code]);
+        }
+        console.log(e.code, ':', error);
+      }
     } finally {
-      alert('회원가입 완료');
       reset();
     }
   };
@@ -113,7 +125,8 @@ const SignUp = () => {
             })}
             placeholder="비밀번호를 입력해주세요."
           />
-          <Button text="회원가입" />
+          {isLoading ? <span>Loding...</span> : <Button text="회원가입" />}
+          {error && <span className="text-red-500">{error}</span>}
         </div>
       </form>
       <footer className="mt-32 flex gap-8">

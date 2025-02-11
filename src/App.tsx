@@ -8,9 +8,10 @@ import Message from './routes/Message';
 import Home from './routes/Home';
 import SignIn from './routes/SignIn';
 import SignUp from './routes/SignUp';
-import Navigation from './components/Navigation';
+
 import { useEffect, useState } from 'react';
 import { auth } from './firebase';
+import UnprotectedRoute from './components/UnprotectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -37,11 +38,19 @@ const router = createBrowserRouter([
   },
   {
     path: '/sign-in',
-    element: <SignIn />,
+    element: (
+      <UnprotectedRoute>
+        <SignIn />
+      </UnprotectedRoute>
+    ),
   },
   {
     path: '/sign-up',
-    element: <SignUp />,
+    element: (
+      <UnprotectedRoute>
+        <SignUp />
+      </UnprotectedRoute>
+    ),
   },
 ]);
 
