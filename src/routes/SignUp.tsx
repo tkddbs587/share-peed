@@ -125,13 +125,20 @@ const SignUp = () => {
             })}
             placeholder="비밀번호를 입력해주세요."
           />
-          {isLoading ? <span>Loding...</span> : <Button text="회원가입" />}
+          <Button
+            text="회원가입"
+            buttonStyle="bg-blue-500"
+            isLoading={isLoading}
+          />
           {error && <span className="text-red-500">{error}</span>}
         </div>
       </form>
       <footer className="mt-32 flex gap-8">
         <p className="text-14-400 text-gray-60">이미 계정이 있으신가요?</p>
-        <Link to="/sign-in" className="text-14-500">
+        <Link
+          to="/sign-in"
+          className="text-14-500 text-blue-400 hover:text-blue-500"
+        >
           로그인
         </Link>
       </footer>
