@@ -86,7 +86,7 @@ const SignIn = () => {
             })}
             placeholder="비밀번호를 입력해주세요."
           />
-          <Button text="로그인" buttonStyle="bg-blue-500" />
+          <Button text="로그인" />
           {error && <span className="text-red-500">{error}</span>}
         </div>
       </form>
