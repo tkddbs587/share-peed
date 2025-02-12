@@ -1,10 +1,15 @@
 type ButtonProps = {
   text: string;
+  buttonStyle?: string;
+  onClick?: () => void;
 };
 
-const Button = ({ text }: ButtonProps) => {
+const Button = ({ text, buttonStyle, onClick }: ButtonProps) => {
   return (
-    <button className="rounded-4 bg-blue-500 p-13 text-14-400 text-white">
+    <button
+      onClick={onClick}
+      className={`${buttonStyle} w-full rounded-4 p-13 text-14-400 text-white`}
+    >
       {text}
     </button>
   );

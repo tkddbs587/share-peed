@@ -47,14 +47,14 @@ const SignIn = () => {
   };
 
   return (
-    <div className="flex flex-col items-center py-200">
+    <div className="mx-16 flex flex-col items-center py-200 md:mx-auto">
       <h1 className="mb-8 text-24-700">로그인</h1>
       <h2 className="mb-32 text-16-400 text-gray-60">
         계정에 로그인하여 시작하세요
       </h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-448 rounded-8 border border-gray-30"
+        className="w-full max-w-448 rounded-8 border border-gray-30"
       >
         <div className="flex flex-col gap-24 p-24">
           <Input
@@ -86,13 +86,16 @@ const SignIn = () => {
             })}
             placeholder="비밀번호를 입력해주세요."
           />
-          {isLoading ? <span>Loding...</span> : <Button text="로그인" />}
+          <Button text="로그인" buttonStyle="bg-blue-500" />
           {error && <span className="text-red-500">{error}</span>}
         </div>
       </form>
       <footer className="mt-32 flex gap-8">
         <p className="text-14-400 text-gray-60">아직 회원이 아니신가요?</p>
-        <Link to="/sign-up" className="text-14-500">
+        <Link
+          to="/sign-up"
+          className="text-14-500 text-blue-400 hover:text-blue-500"
+        >
           회원가입
         </Link>
       </footer>

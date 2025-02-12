@@ -66,7 +66,11 @@ function App() {
     init();
   }, []);
 
-  return <>{isLoding ? 'Loding...' : <RouterProvider router={router} />}</>;
+  return (
+    <div className="bg-gray-5 min-h-screen">
+      {isLoding ? 'Loding...' : <RouterProvider router={router} />}
+    </div>
+  );
 }
 
 export default App;
