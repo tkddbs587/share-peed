@@ -61,7 +61,7 @@ const Setting = () => {
         </div>
 
         <div className="w-full max-w-448">
-          <Button onClick={onLogout} text="로그아웃" buttonStyle="bg-red-500" />
+          <Button onClick={onLogout} text="로그아웃" variant="secondary" />
         </div>
       </div>
     </>
