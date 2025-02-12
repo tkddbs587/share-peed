@@ -3,11 +3,11 @@ import NavOption from './NavOption';
 
 const Navigation = () => {
   return (
-    <div className="flex justify-between px-50">
+    <footer className="fixed bottom-0 flex w-full items-end justify-between bg-[#333236] px-50 py-12">
       {NAV_OPTIONS.map((option) => (
         <NavOption {...option} key={option.id} />
       ))}
-    </div>
+    </footer>
   );
 };
 

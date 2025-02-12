@@ -2,16 +2,15 @@ type ButtonProps = {
   text: string;
   buttonStyle?: string;
   onClick?: () => void;
-  isLoading?: boolean;
 };
 
-const Button = ({ text, buttonStyle, onClick, isLoading }: ButtonProps) => {
+const Button = ({ text, buttonStyle, onClick }: ButtonProps) => {
   return (
     <button
       onClick={onClick}
-      className={`${buttonStyle} rounded-4 p-13 text-14-400 text-white`}
+      className={`${buttonStyle} w-full rounded-4 p-13 text-14-400 text-white`}
     >
-      {isLoading ? <span>Loding...</span> : text}
+      {text}
     </button>
   );
 };
