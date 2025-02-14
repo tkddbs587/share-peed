@@ -125,7 +125,7 @@ const SignUp = () => {
             })}
             placeholder="비밀번호를 입력해주세요."
           />
-          <Button text="회원가입" buttonStyle="bg-blue-500" />
+          <Button text="회원가입" />
           {error && <span className="text-red-500">{error}</span>}
         </div>
       </form>

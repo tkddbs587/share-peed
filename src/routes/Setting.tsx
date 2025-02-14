@@ -1,6 +1,7 @@
 import Button from '@/components/common/Button';
-import { auth, storage } from '@/firebase';
+import { auth, db, storage } from '@/firebase';
 import { updateProfile } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -23,11 +24,26 @@ const Setting = () => {
     if (!user) return;
     if (files && files.length === 1) {
       const file = files[0];
+
+      // Firebase Storage에 업로드
       const locationRef = ref(storage, `avatars/${user.uid}`);
       const result = await uploadBytes(locationRef, file);
       const avatarUrl = await getDownloadURL(result.ref);
+
       setAvatar(avatarUrl);
+
+      // Firebase Auth profile 업데이트
       await updateProfile(user, { photoURL: avatarUrl });
+
+      // Firestore users 컬렉션에도 저장
+      await setDoc(
+        doc(db, 'users', user.uid),
+        {
+          avatarUrl: avatarUrl,
+          displayName: user.displayName,
+        },
+        { merge: true },
+      );
     }
   };
 
@@ -61,7 +77,7 @@ const Setting = () => {
         </div>
 
         <div className="w-full max-w-448">
-          <Button onClick={onLogout} text="로그아웃" buttonStyle="bg-red-500" />
+          <Button onClick={onLogout} text="로그아웃" variant="secondary" />
         </div>
       </div>
     </>
